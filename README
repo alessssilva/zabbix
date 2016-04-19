@@ -1,0 +1,60 @@
+############################################################ Zabbix Security Insights #######################################################################
+Author: Alessandro Silva
+Version: 1.0
+Twitter: @alessssilva 
+#############################################################################################################################################################
+
+What is Zabbix Security Insights?
+
+Zabbix Security Insight is a solution that implements Zabbix, UserParameter, Yum Security plugin to collect and generate a view of security environment for a better management and compliance in Red Hat Enterprise Linux servers and derivated. This solution was tested in Zabbix 2.0, 2.2, 2.4 and 3.0 and actually 
+works in RHEL and derivated distribution.
+
+
+What is the function of both these files?
+
+- zabbix_agentd.conf
+  This is the zabbix agent cofiguration file
+
+- zabbix_agentd.userparams.conf
+  File used to extend zabbix agent funcionality using UserParameter
+
+- Zabbix Security Insights for RHEL.xml
+  This is the Zabbix template to collect items from UserParameter. This template contain itens, triggers and graphics
+
+- zbxgen-secreport
+  This is the script responsible to generate sec-report and vuln-report files. These reports will be saved in /var/log/zabbix/security-reports/  for future queries.
+    
+    * sec-report: this file will store the number of erratas by severity, total and enhancements
+    * vul-report: this file will store the package, its vulnerability including the CVE and the  package version that will fix the vulnerability
+
+- zbxcheck-vuln
+  This is a script responsible to query the vulnerabilities collected by /var/log/zabbix/security-reports/vuln-report and show in the Zabbix Dashboard as soon as you want. If you have a item collected with valor greater than "0", a trigger will be fired and a message will be showed in the dashboard. In the last 20 issues, you will be able to run a script to check the vulnerabilities reported by the triggers.
+
+
+
+How to install Yum Security Plugin?
+
+
+ - RHEL6
+
+   # yum install yum-plugin-security -y
+
+
+ - RHEL7
+
+   RHEL7 brings the Yum Security Plugin to the main code of Yum. Now, it's not required install yum-plugin-security package.
+
+
+
+How to run zbxgen-secreport scripts to generate your security reports?
+
+  You should create a job using cron or any other solution
+
+  # crontab -e
+
+    0 0 * * * zbxgen-secreport 2> /var/log/zabbix/security-reports/error.log
+
+  # here we are running daily at 0 hour. You can choose time and frequency by yourself.
+
+
+
