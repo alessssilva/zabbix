@@ -6,8 +6,7 @@ Twitter: @alessssilva
 
 What is Zabbix Security Insights?
 
-Zabbix Security Insight is a solution that implements Zabbix, UserParameter, Yum Security plugin to collect and generate a view of security environment for a better management and compliance in Red Hat Enterprise Linux servers and derivated. This solution was tested in Zabbix 2.0, 2.2, 2.4 and 3.0 and actually 
-works in RHEL and derivated distribution.
+Zabbix Security Insights is a solution that implements Zabbix, UserParameter, Yum Security plugin to collect and generate a view of security environment for a better management and compliance in Red Hat Enterprise Linux servers and derivated. This solution was tested in Zabbix 2.0, 2.2, 2.4 and 3.0 and actually works in RHEL and derivated distribution.
 
 
 What is the function of both these files?
@@ -32,17 +31,21 @@ What is the function of both these files?
 
 
 
-How to install Yum Security Plugin?
+About Yum Security Plugin
+
+The Yum Security Plugin is available by yum-plugin-security package and allows you to use yum to obtain a list of all of the errata that are available for your system as security, bugfix and enhancement advisories and yours respective CVE.
 
 
- - RHEL6
+  How to install ?
 
-   # yum install yum-plugin-security -y
+  - RHEL6
+
+    # yum install yum-plugin-security -y
 
 
- - RHEL7
+  - RHEL7
 
-   RHEL7 brings the Yum Security Plugin to the main code of Yum. Now, it's not required install yum-plugin-security package.
+    RHEL7 brings the Yum Security Plugin to the main code of Yum. Now, it's not required install yum-plugin-security package.
 
 
 
