@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# Genarating the security report
-yum updateinfo > /var/log/zabbix/security-reports/sec-report 2> /var/log/zabbix/security-reports/error.log
-
-# Genarating the vulnerability report
-yum updateinfo list cve > /var/log/zabbix/security-reports/vuln-report
-sed -i '1d;$d' /var/log/zabbix/security-reports/vuln-report
