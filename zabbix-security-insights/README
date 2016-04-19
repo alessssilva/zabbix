@@ -6,58 +6,65 @@ Twitter: @alessssilva
 
 What is Zabbix Security Insights?
 
-Zabbix Security Insights is a solution that implements Zabbix, UserParameter, Yum Security plugin to collect and generate a view of security environment for a better management and compliance in Red Hat Enterprise Linux servers and derivated. This solution was tested in Zabbix 2.0, 2.2, 2.4 and 3.0 and actually works in RHEL and derivated distribution.
+Vulnerability is a software error that can be exploited by a potential attacker to gain access to your network or system. The use of misconfigured services, weak passwords and the presence of packages that contain bugs or security holes are loopholes that can be exploited at any time. Zabbix Security Insights is a solution that implements Vulnerabilities Monitoring using Zabbix, UserParameter and Yum Security plugin to collect and generate a view of security environment for a better management and compliance in Red Hat Enterprise Linux servers and derived. This solution was tested in Zabbix 2.0, 2.2, 2.4 and 3.0.
+
+Using Zabbix Security Insights you will be able to:
+
+    - Monitor Security Advisories
+    - Monitor BugFix Advisories
+    - Monitor Enhancements Advisories
+    - Use vulnerabilities report to check server vulnerabilities and fixes
+
+This solution can be used to monitor physical servers, virtual machines, cloud servers and Docker containers with Red Hat Enterprise Linux system and derived distributions.
 
 
 What is the function of both these files?
 
-- zabbix_agentd.conf
-  This is the zabbix agent cofiguration file
+   - zabbix_agentd.conf
+     This is the zabbix agent cofiguration file
 
-- zabbix_agentd.userparams.conf
-  File used to extend zabbix agent funcionality using UserParameter
+   - zabbix_agentd.userparams.conf
+     File used to extend zabbix agent funcionality using UserParameter
 
-- Zabbix-Security-Insights.xml
-  This is the Zabbix template to collect items from UserParameter. This template has itens, triggers and graphics
+   - Zabbix-Security-Insights.xml
+     This is the Zabbix template to collect items from UserParameter. This template has itens, triggers and graphics
 
-- zbxgen-secreport
-  This is the script responsible to generate sec-report and vuln-report files. These reports will be saved in /var/log/zabbix/security-reports/  for future queries.
+   - zbxgen-secreport
+     This is the script responsible to generate sec-report and vuln-report files. These reports will be saved in /var/log/zabbix/security-reports/  for future     queries.
     
-    * sec-report: this file will store the number of erratas by severity, total and enhancements
-    * vul-report: this file will store the package, its vulnerability including the CVE and the  package version that will fix the vulnerability
+        * sec-report: this file will store the number of erratas by severity, total and enhancements
+        * vul-report: this file will store the package, its vulnerability including the CVE and the  package version that will fix the vulnerability
 
-- zbxcheck-vuln
-  This is a script responsible to query the vulnerabilities collected by /var/log/zabbix/security-reports/vuln-report and show in the Zabbix Dashboard as soon as you want. If you have a item collected with valor greater than "0", a trigger will be fired and a message will be showed in the dashboard. In the last 20 issues, you will be able to run a script to check the vulnerabilities reported by the triggers.
+    - zbxcheck-vuln
+      This is a script responsible to query the vulnerabilities collected by /var/log/zabbix/security-reports/vuln-report and show in the Zabbix Dashboard as       soon as you want. If you have a item collected with valor greater than "0", a trigger will be fired and a message will be showed in the dashboard. In th      e last 20 issues, you will be able to run a script to check the vulnerabilities reported by the triggers.
 
 
 
 About Yum Security Plugin
 
-The Yum Security Plugin is available by yum-plugin-security package and allows you to use yum to obtain a list of all of the errata that are available for your system as security, bugfix and enhancement advisories and yours respective CVE.
+     The Yum Security Plugin is available by yum-plugin-security package and allows you to use yum to obtain a list of all of the errata that are available for your system as security, bugfix and enhancement advisories and yours respective CVE.
 
 
-  How to install ?
+   - How to install ?
 
-  - RHEL6
+     RHEL6
 
-    # yum install yum-plugin-security -y
+     # yum install yum-plugin-security -y
 
 
-  - RHEL7
+     RHEL7
 
-    RHEL7 brings the Yum Security Plugin to the main code of Yum. Now, it's not required install yum-plugin-security package.
+     RHEL7 brings the Yum Security Plugin to the main code of Yum. Now, it's not required install yum-plugin-security package.
 
 
 
 How to run zbxgen-secreport scripts to generate your security reports?
 
-  You should create a job using cron or any other solution
+    You should create a job using cron or any other solution
 
-  # crontab -e
+    # crontab -e
 
-    0 0 * * * zbxgen-secreport 2> /var/log/zabbix/security-reports/error.log
+       0 0 * * * zbxgen-secreport 2> /var/log/zabbix/security-reports/error.log
 
-  # here we are running daily at 0 hour. You can choose time and frequency by yourself.
-
-
+    # here we are running daily at 0 hour. You can choose time and frequency by yourself.
 
