@@ -68,3 +68,6 @@ How to run zbxgen-secreport scripts to generate your security reports?
 
     # here we are running daily at 0 hour. You can choose time and frequency by yourself.
 
+
+This solution was presented in Zabbix Conference Latam 2016 and slides are available here:
+http://pt.slideshare.net/AlessandroSilva/monitoramento-de-vulnerabilidades-com-zabbix
